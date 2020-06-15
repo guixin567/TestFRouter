@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zhengyinuo.list">
+
+    <application>
+        <activity android:name=".TestList2Activity"/>
+        <activity android:name=".TestListActivity" android:label="列表页"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,11 @@
+include ':froute-api'
+include ':froute-compile'
+include ':froute-annotation'
+include ':srouter-api'
+include ':compiler'
+include ':annotation'
+include ':common'
+include ':detail'
+include ':list'
+include ':app'
+rootProject.name = "TestArouter1"

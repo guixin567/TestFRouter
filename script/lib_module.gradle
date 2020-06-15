@@ -1,0 +1,56 @@
+if(is_app){
+    apply plugin: 'com.android.application'
+}else{
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion lib_android.compileSdkVersion
+    buildToolsVersion lib_android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion lib_android.minSdkVersion
+        targetSdkVersion lib_android.targetSdkVersion
+        versionCode lib_android.versionCode
+        versionName lib_android.versionName
+
+        testInstrumentationRunner lib_android.testInstrumentationRunner
+        consumerProguardFiles lib_android.consumerProguardFiles
+
+        kapt{
+            arguments{
+                arg("ModuleName",project.getName())
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+}
+
+dependencies {
+    lib_dependencies.each { key, value ->
+        implementation value
+    }
+    base_dependencies.forEach { key, value ->
+        implementation value
+    }
+    implementation project(path: ":common")
+    kapt project(":froute-compile")
+    api project(":froute-api")
+}
